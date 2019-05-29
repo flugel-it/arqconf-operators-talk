@@ -1,0 +1,16 @@
+kind: ConfigMap  
+apiVersion: v1  
+metadata:  
+  name: app-static-files  
+data:  
+  index.html: |  
+    <!doctype html>  
+    <html>  
+      <head>  
+        <meta charset="utf-8">  
+        <title>Example</title>  
+      </head>  
+      <body>  
+        <h1>Example service</h1>
+      </body>  
+    </html>  

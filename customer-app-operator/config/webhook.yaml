@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customerapp-controller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: customerapp-controller
+  template:
+    metadata:
+      labels:
+        app: customerapp-controller
+    spec:
+      containers:
+      - name: controller
+        image: python:3.7
+        command: ["python", "-u", "/hooks/sync.py"]
+        volumeMounts:
+        - name: hooks
+          mountPath: /hooks
+      volumes:
+      - name: hooks
+        configMap:
+          name: customerapp-controller
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: customerapp-controller
+spec:
+  selector:
+    app: customerapp-controller
+  ports:
+  - port: 80

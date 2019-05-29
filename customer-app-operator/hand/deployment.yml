@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+  namespace: customer1-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - name: app
+        image: nginx:1.15.12
+        ports:
+        - name: http-port
+          containerPort: 80
+        volumeMounts:  
+            - readOnly: true  
+              mountPath: /usr/share/nginx/html
+              name: html-files  
+      volumes:  
+        - name: html-files  
+          configMap:  
+            name: app-static-files

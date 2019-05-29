@@ -1,0 +1,18 @@
+apiVersion: metacontroller.k8s.io/v1alpha1
+kind: DecoratorController
+metadata:
+  name: autoingress
+spec:
+  resources:
+  - apiVersion: v1
+    resource: services
+    annotationSelector:
+      matchExpressions:
+      - {key: autoingress.flugel.it, operator: Exists}
+  attachments:
+  - apiVersion: networking.k8s.io/v1beta1
+    resource: ingresses
+  hooks:
+    sync:
+      webhook:
+        url: http://autoingress-controller.autoingress/sync

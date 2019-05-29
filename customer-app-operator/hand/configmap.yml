@@ -1,0 +1,17 @@
+kind: ConfigMap  
+apiVersion: v1  
+metadata:  
+  name: app-static-files  
+  namespace: customer1-ns
+data:  
+  index.html: |  
+    <!doctype html>  
+    <html>  
+      <head>  
+        <meta charset="utf-8">  
+        <title>Customer homepage</title>  
+      </head>  
+      <body>  
+        <h1>Example page for customer1</h1>
+      </body>  
+    </html>  

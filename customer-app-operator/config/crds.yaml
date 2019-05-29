@@ -1,0 +1,37 @@
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  name: customerapp.customerapp.flugel.it
+spec:
+  group: customerapp.flugel.it
+  names:
+    kind: CustomerApp
+    listKind: CustomerAppList
+    plural: customerapp
+    singular: customerapp
+  scope: Namespaced
+  subresources:
+    status: {}
+  validation:
+    openAPIV3Schema:
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+        metadata:
+          type: object
+        spec:
+          properties:
+            customer:
+              minLength: 1
+              type: string
+          required:
+          - customer
+          type: object
+        status:
+          properties:
+            currentStatus:
+              type: string
+          type: object
+  version: v1alpha1

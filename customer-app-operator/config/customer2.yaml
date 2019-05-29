@@ -1,0 +1,6 @@
+apiVersion: customerapp.flugel.it/v1alpha1
+kind: CustomerApp
+metadata:
+  name: customer2-customerapp
+spec:
+  customer: customer2
