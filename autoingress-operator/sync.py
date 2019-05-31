@@ -5,14 +5,14 @@ from pprint import pformat
 
 logging.basicConfig(level=logging.INFO)
 
-def sync(obj, attachments):
-    logging.info(f"Sync for parent:\n {pformat(obj)}")
+def sync(service, attachments):
+    logging.info(f"Sync for parent:\n {pformat(service)}")
 
     virtualhost = 'services.example.com'
     desired_attachments = []
 
-    service_name = obj['metadata']['name']
-    ns = obj['metadata']['namespace']
+    service_name = service['metadata']['name']
+    ns = service['metadata']['namespace']
     path = f'/{service_name}.{ns}'
 
     # Ingress definition
